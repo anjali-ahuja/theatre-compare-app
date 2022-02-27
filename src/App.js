@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import MovieObject from "./Components/MovieObject";
 
+require("es6-promise").polyfill();
+
+// reassigning the fetch function
+var originalFetch = require("isomorphic-fetch");
+var fetch = require("fetch-retry")(originalFetch);
+
 // urls and key for api
 const cwUrl =
   "https://challenge.lexicondigital.com.au/api/v2/cinemaworld/movies";
@@ -21,17 +27,13 @@ function App() {
 
     // make api calls only if no movies locally, don't want to ddos the api
     if ((cwMovies && cwMovies.length === 0) || !cwMovies) {
-      let reqCw = new Request(cwUrl, { method: "GET", headers: h });
-
-      fetch(reqCw)
+      fetch(cwUrl, { method: "GET", headers: h, retries: 20 })
         .then((response) => response.json())
         .then((obj) => setCwMovies(obj["Movies"]));
     }
 
     if ((fwMovies && fwMovies.length === 0) || !fwMovies) {
-      let reqFw = new Request(fwUrl, { method: "GET", headers: h });
-
-      fetch(reqFw)
+      fetch(fwUrl, { method: "GET", headers: h, retries: 20 })
         .then((response) => response.json())
         .then((obj) => setFwMovies(obj["Movies"]));
     }
