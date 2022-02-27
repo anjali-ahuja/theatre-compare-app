@@ -18,10 +18,10 @@ This **frontend** solution is a React App that compares movie prices from two AP
 This is what I ended up with. If all things go right, it should look like this.
 
 **Desktop:**
-<img src="./doc/img/desktop.PNG" height="512"/>
+<img src="doc/img/desktop.PNG" height="512"/>
 
 **Mobile:**
-<img src="./doc/img/mobile.PNG" height="512"/>
+<img src="doc/img/mobile.PNG" height="512"/>
 
 ## Getting Started with Create React App
 
