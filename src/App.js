@@ -93,6 +93,9 @@ function App() {
         </div>
       </div>
 
+      {
+        // ensuring no failed API calls before rendering Movie Objects
+      }
       {cwMovies === undefined
         ? fwMovies === undefined
           ? cwMovies === []
