@@ -1,7 +1,25 @@
 import "./App.css";
 
 function App() {
-  return <div className="App">THEATRE COMPARE APP</div>;
+  return (
+    <div>
+      <div className="page-container">
+        <div className="text-container">
+          <h1 className="page-heading">Prince's Theatre</h1>
+        </div>
+        <div className="text-container">
+          <h1 className="page-subheading">Classic Movies at Home</h1>
+        </div>
+        <div className="text-container">
+          <p className="page-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;
