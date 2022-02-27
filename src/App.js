@@ -1,4 +1,5 @@
 import "./App.css";
+import MovieObject from "./Components/MovieObject";
 
 function App() {
   return (
@@ -17,6 +18,12 @@ function App() {
             ad minim veniam, quis nostrud exercitation
           </p>
         </div>
+      </div>
+      <div className="movie-object-container">
+        <MovieObject />
+        <MovieObject />
+        <MovieObject />
+        <MovieObject />
       </div>
     </div>
   );
