@@ -2,7 +2,9 @@ import React from "react";
 import "./MovieObject.css";
 
 // renders a movie object, w/ title and both prices
-function MovieObject({ title, cwPrice, fwPrice, cwIsCheaper }) {
+function MovieObject({ title, cwPrice, fwPrice }) {
+  // find fw price by finding matching title
+
   return (
     <div className="movie-container">
       <div className="movie-image"></div>
@@ -13,7 +15,7 @@ function MovieObject({ title, cwPrice, fwPrice, cwIsCheaper }) {
             <p>Cinema World</p>
           </div>
           <div className="col">
-            <p>$</p>
+            <p>$ {cwPrice}</p>
           </div>
         </div>
         <div className="row">
@@ -21,7 +23,7 @@ function MovieObject({ title, cwPrice, fwPrice, cwIsCheaper }) {
             <p>Film World</p>
           </div>
           <div className="col">
-            <p>$$</p>
+            <p>$ {fwPrice} </p>
           </div>
         </div>
       </div>

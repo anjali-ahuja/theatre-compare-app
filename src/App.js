@@ -15,7 +15,7 @@ function App() {
   const [fwMovies, setFwMovies] = useState([]);
 
   useEffect(() => {
-    // form request, add header to key
+    // form request, add header to include key
     let h = new Headers();
     h.append("x-api-key", key);
 
@@ -37,6 +37,9 @@ function App() {
     }
   });
 
+  console.log(cwMovies);
+  console.log(fwMovies);
+
   return (
     <div>
       <div className="page-container">
@@ -55,11 +58,15 @@ function App() {
         </div>
       </div>
       {
-        // each movie object is a child
+        // each item in cwMovies array to be rendered as a MovieObject
       }
       <div className="movie-object-container">
         {cwMovies.map((item, index) => {
-          return <MovieObject title={JSON.stringify(item["Title"])} />;
+          let t = JSON.stringify(item.Title);
+          let cwPrice = item.Price;
+          let fwPrice = fwMovies[index].Price;
+
+          return <MovieObject title={t} cwPrice={cwPrice} fwPrice={fwPrice} />;
         })}
       </div>
 
