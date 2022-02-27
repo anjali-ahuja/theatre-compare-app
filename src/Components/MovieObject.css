@@ -43,10 +43,14 @@
   width: 50%;
 }
 
+.highlighted {
+  background-color: gold;
+}
+
 @media screen and (max-width: 991px) {
   .movie-container {
-    width: 360px;
-    height: 360px;
+    width: 380px;
+    height: 380px;
     margin: 10px;
     border: 2px;
     border-color: black;
