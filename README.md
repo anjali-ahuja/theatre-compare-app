@@ -23,6 +23,20 @@ This is what I ended up with. If all things go right, it should look like this.
 **Mobile:**
 ![Mobile](doc/img/mobile.PNG)
 
+### Thinking Behind Solution
+
+* Modularised each movie comparison into a separate react component (MovieObject.js).
+* Fetch API makes (minimum) two calls to get list of movie objects from both locations at beginning (via useEffect). The two arrays are used from this point.
+* Installed package to retry fetch api calls by default.
+* **Assumption:** at the API, movies are available in the same order at both Film World and Cinema World. In other words, the same index at both theatres points to the same movie.
+* Responsive website achieved through CSS.
+* Highlighting of cheaper option achieved through JS + conditional CSS.
+
+## Dependencies
+
+Need to install the **fetch-retry** package for this solution to work optimally.
+`npm install fetch-retry --save`
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
