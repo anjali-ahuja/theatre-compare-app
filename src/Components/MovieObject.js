@@ -15,7 +15,7 @@ function MovieObject({ title, cwPrice, fwPrice }) {
             <p>Cinema World</p>
           </div>
           <div className="col">
-            <p>$ {cwPrice}</p>
+            <p>$ {cwPrice.toFixed(2)}</p>
           </div>
         </div>
         <div className="row">
@@ -23,7 +23,7 @@ function MovieObject({ title, cwPrice, fwPrice }) {
             <p>Film World</p>
           </div>
           <div className="col">
-            <p>$ {fwPrice} </p>
+            <p>$ {fwPrice.toFixed(2)} </p>
           </div>
         </div>
       </div>
