@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# Lexicon Digital Coding Challenge 💻
+
+Author: [Anjali Ahuja](https://www.linkedin.com/in/anjali-manoj-ahuja/)
+
+Framework/Language: React JS
+
+This **frontend** solution is a React App that compares movie prices from two API locations. The (React) JS concepts used are useState, useEffect, and fetch API.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
