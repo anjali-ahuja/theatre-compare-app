@@ -6,6 +6,11 @@ Framework/Language: React JS
 
 This **frontend** solution is a React App that compares movie prices from two API locations. The (React) JS concepts used are useState, useEffect, and fetch API.
 
+# Table of Contents
+1. [Solution](#solution)
+2. [Dependencies](#dependencies)
+3. [Getting Started with React](#getting-started-with-create-react-app)
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
