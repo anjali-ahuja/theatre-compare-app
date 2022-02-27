@@ -20,20 +20,20 @@ function App() {
     h.append("x-api-key", key);
 
     // make api calls only if no movies locally, don't want to ddos the api
-    if (cwMovies.length === 0) {
+    if ((cwMovies && cwMovies.length === 0) || !cwMovies) {
       let reqCw = new Request(cwUrl, { method: "GET", headers: h });
 
       fetch(reqCw)
         .then((response) => response.json())
-        .then((obj) => setCwMovies(obj));
+        .then((obj) => setCwMovies(obj["Movies"]));
     }
 
-    if (fwMovies.length === 0) {
+    if ((fwMovies && fwMovies.length === 0) || !fwMovies) {
       let reqFw = new Request(fwUrl, { method: "GET", headers: h });
 
       fetch(reqFw)
         .then((response) => response.json())
-        .then((obj) => setFwMovies(obj));
+        .then((obj) => setFwMovies(obj["Movies"]));
     }
   });
 
@@ -58,10 +58,9 @@ function App() {
         // each movie object is a child
       }
       <div className="movie-object-container">
-        <MovieObject />
-        <MovieObject />
-        <MovieObject />
-        <MovieObject />
+        {cwMovies.map((item, index) => {
+          return <MovieObject title={JSON.stringify(item["Title"])} />;
+        })}
       </div>
 
       <div id="movies"></div>
