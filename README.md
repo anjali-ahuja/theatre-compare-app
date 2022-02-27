@@ -6,10 +6,22 @@ Framework/Language: React JS
 
 This **frontend** solution is a React App that compares movie prices from two API locations. The (React) JS concepts used are useState, useEffect, and fetch API.
 
-# Table of Contents
+## Table of Contents
 1. [Solution](#solution)
 2. [Dependencies](#dependencies)
 3. [Getting Started with React](#getting-started-with-create-react-app)
+
+## Solution
+
+### What It Looks Like
+
+This is what I ended up with. If all things go right, it should look like this.
+
+**Desktop:**
+<img src="./doc/img/desktop.PNG" height="512"/>
+
+**Mobile:**
+<img src="./doc/img/mobile.PNG" height="512"/>
 
 ## Getting Started with Create React App
 
