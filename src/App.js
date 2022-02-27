@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 import MovieObject from "./Components/MovieObject";
 
@@ -7,34 +8,35 @@ const cwUrl =
 const fwUrl = "https://challenge.lexicondigital.com.au/api/v2/filmworld/movies";
 const key = "Yr2636E6BTD3UCdleMkf7UEdqKnd9n361TQL9An7";
 
-// vars to store list of movies for both theatres
-var cwMovies = [];
-var fwMovies = [];
-
-const sendHttpRequest = (url, key) => {
-  // using promise to handle async xhr
-  const promise = new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-    xhr.setRequestHeader("x-api-key", key);
-    xhr.send();
-    xhr.onload = () => {
-      resolve(JSON.parse(xhr.response));
-    };
-  });
-  return promise;
-};
-
-const getMovieData = () => {
-  // when promise resolved, update data
-  sendHttpRequest(cwUrl, key).then((response) => {
-    cwMovies = response;
-    console.log(cwMovies);
-  });
-};
-
 // main app, renders everything, all other components are children
 function App() {
+  // store list of movies for both theatres
+  const [cwMovies, setCwMovies] = useState([]);
+  const [fwMovies, setFwMovies] = useState([]);
+
+  useEffect(() => {
+    // form request, add header to key
+    let h = new Headers();
+    h.append("x-api-key", key);
+
+    // make api calls only if no movies locally, don't want to ddos the api
+    if (cwMovies.length === 0) {
+      let reqCw = new Request(cwUrl, { method: "GET", headers: h });
+
+      fetch(reqCw)
+        .then((response) => response.json())
+        .then((obj) => setCwMovies(obj));
+    }
+
+    if (fwMovies.length === 0) {
+      let reqFw = new Request(fwUrl, { method: "GET", headers: h });
+
+      fetch(reqFw)
+        .then((response) => response.json())
+        .then((obj) => setFwMovies(obj));
+    }
+  });
+
   return (
     <div>
       <div className="page-container">
@@ -53,7 +55,6 @@ function App() {
         </div>
       </div>
       {
-        getMovieData()
         // each movie object is a child
       }
       <div className="movie-object-container">
@@ -62,6 +63,8 @@ function App() {
         <MovieObject />
         <MovieObject />
       </div>
+
+      <div id="movies"></div>
     </div>
   );
 }
