@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import MovieObject from "./Components/MovieObject";
+import MovieObject from "./Components/MovieObject/MovieObject";
 
 require("es6-promise").polyfill();
 
@@ -28,19 +28,52 @@ function App() {
     // make api calls only if no movies locally, don't want to ddos the api
     if ((cwMovies && cwMovies.length === 0) || !cwMovies) {
       fetch(cwUrl, { method: "GET", headers: h, retries: 20 })
-        .then((response) => response.json())
-        .then((obj) => setCwMovies(obj["Movies"]));
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((obj) => setCwMovies(obj["Movies"]))
+        .catch((error) => {
+          setCwMovies([]);
+        });
     }
 
     if ((fwMovies && fwMovies.length === 0) || !fwMovies) {
       fetch(fwUrl, { method: "GET", headers: h, retries: 20 })
-        .then((response) => response.json())
-        .then((obj) => setFwMovies(obj["Movies"]));
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((obj) => setFwMovies(obj["Movies"]))
+        .catch((error) => {
+          setFwMovies([]);
+        });
     }
   });
 
-  console.log(cwMovies);
-  console.log(fwMovies);
+  // renders all the movie objects
+  const movies = (
+    <div className="movie-object-container">
+      {cwMovies.map((item, index) => {
+        let t = JSON.stringify(item.Title);
+        let cwPrice = item.Price;
+
+        let fwPrice =
+          fwMovies && fwMovies.length > 0 ? fwMovies[index].Price : 0;
+
+        return <MovieObject title={t} cwPrice={cwPrice} fwPrice={fwPrice} />;
+      })}
+    </div>
+  );
+
+  // renders API fail message
+  const errorScreen = (
+    <div className="text-container">
+      <h1 className="page-heading">Uh Oh.. API Error. Try again!</h1>
+    </div>
+  );
 
   return (
     <div>
@@ -59,20 +92,16 @@ function App() {
           </p>
         </div>
       </div>
-      {
-        // each item in cwMovies array to be rendered as a MovieObject
-      }
-      <div className="movie-object-container">
-        {cwMovies.map((item, index) => {
-          let t = JSON.stringify(item.Title);
-          let cwPrice = item.Price;
-          let fwPrice = fwMovies[index].Price;
 
-          return <MovieObject title={t} cwPrice={cwPrice} fwPrice={fwPrice} />;
-        })}
-      </div>
-
-      <div id="movies"></div>
+      {cwMovies === undefined
+        ? fwMovies === undefined
+          ? cwMovies === []
+            ? fwMovies === []
+              ? errorScreen
+              : errorScreen
+            : errorScreen
+          : errorScreen
+        : movies}
     </div>
   );
 }

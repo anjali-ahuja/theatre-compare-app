@@ -6,7 +6,7 @@ function MovieObject({ title, cwPrice, fwPrice }) {
   // find fw price by finding matching title
   const cwIsCheaper = cwPrice < fwPrice;
   return (
-    <div className="movie-container">
+    <div data-testid="movie-object" className="movie-container">
       <div className="movie-image"></div>
       <div className="movie-info">
         <h1 className="movie-title">{title}</h1>
