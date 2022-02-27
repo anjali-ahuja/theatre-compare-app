@@ -1,6 +1,7 @@
 import React from "react";
 import "./MovieObject.css";
 
+// renders a movie object, w/ title and both prices
 function MovieObject(title, cwPrice, fwPrice, cwIsCheaper) {
   return (
     <div className="movie-container">
